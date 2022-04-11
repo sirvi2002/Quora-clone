@@ -13,7 +13,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-quill": "^1.3.5",
-    "react-responsive-modal": "^6.2.0",
+    "react-responsive-modal": "^5.2.0",
     "react-scripts": "5.0.0",
     "react-time-ago": "^7.1.9",
     "web-vitals": "^2.1.4"
@@ -41,5 +41,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirvi2002/Quora-clone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sirvi2002/Quora-clone/issues"
+  },
+  "homepage": "https://github.com/sirvi2002/Quora-clone#readme"
 }

@@ -189,7 +189,7 @@
     align-items: center;
   }
   
-  .modal__buttons > .cancle {
+  .modal__buttons > .cancel {
     margin-top: 10px;
     border: none;
     outline: none;
@@ -200,11 +200,11 @@
     cursor: pointer;
   }
   
-  .modal__buttons > .cancle:hover {
+  .modal__buttons > .cancel:hover {
     color: red;
   }
   
-  .modal__buttons > .add {
+  .add {
     border: none;
     outline: none;
     margin-top: 10px;
@@ -217,7 +217,7 @@
     width: 50%;
   }
   
-  .modal__buttons > .add:hover {
+   .add:hover {
     background-color: #eee;
     color: #222;
   }
@@ -231,3 +231,4 @@
       display: none;
     }
   }
+

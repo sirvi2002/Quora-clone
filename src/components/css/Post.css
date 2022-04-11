@@ -170,7 +170,7 @@
     width: 100%;
   }
   
-  .modal__button > .cancle {
+  .modal__button > .cancel {
     border: none;
     margin-top: 10px;
     outline: none;
@@ -181,7 +181,7 @@
     cursor: pointer;
   }
   
-  .modal__button > .cancle:hover {
+  .modal__button > .cancel:hover {
     color: red;
   }
   .modal__button > .add {
@@ -208,5 +208,5 @@
   
   .quill {
     width: 100%;
-    height: 120px;
+    height: 80px;
   }
