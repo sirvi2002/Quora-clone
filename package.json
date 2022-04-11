@@ -1,50 +1,14 @@
 {
   "name": "quora-clone",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.12.4",
-    "@material-ui/icons": "^4.11.3",
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
-    "html-react-parser": "^1.4.10",
-    "javascript-time-ago": "^2.3.13",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-quill": "^1.3.5",
-    "react-responsive-modal": "^5.2.0",
-    "react-scripts": "5.0.0",
-    "react-time-ago": "^7.1.9",
-    "web-vitals": "^2.1.4"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm start --prefix frontend",
+    "server": "nodemon backend/server",
+    "start": "nodemon --watch backend --exec node backend/server.js"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sirvi2002/Quora-clone.git"
@@ -55,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/sirvi2002/Quora-clone/issues"
   },
-  "homepage": "https://github.com/sirvi2002/Quora-clone#readme"
+  "homepage": "https://github.com/sirvi2002/Quora-clone#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10",
+    "nodemon": "^2.0.15"
+  }
 }

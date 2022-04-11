@@ -7,6 +7,7 @@ import { Avatar, Button, Input} from '@material-ui/core'
 import "./css/QuoraHeader.css";
 import 'react-responsive-modal/styles.css'
 import Modal from 'react-responsive-modal'
+import axios from 'axios'
 
 function QuoraHeader() {
 
@@ -14,7 +15,31 @@ function QuoraHeader() {
 
     const onOpenModal = () => setOpen(true);
     const [inputUrl , setInputUrl] = useState("")
+    const [question, setQuestion] = useState("");
 
+    const handleSubmit = async() => {
+        console.log("QUestion" ,question);
+        if (question !== "")
+        {
+            const config = {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }
+            const body = {
+                questionName: question,
+                questionUrl : inputUrl 
+            }
+            await axios.post('http://localhost:5000/api/questions', body, config).then((res) =>
+            {
+                console.log(res.data);
+                alert(res.data.message);
+                window.location.href = '/';
+            }).catch((e) => {
+                console.log("Error :- ", e);
+            })
+        }
+    }
 
     return (
         <div className='qHeader'>
@@ -73,7 +98,10 @@ function QuoraHeader() {
                         </div>
                     </div>
                     <div className='modal__field'>
-                        <Input type='text' placeholder="Start your question 'What', 'How', 'Why', etc."
+                        <Input
+                            value = {question}
+                            onChange={(e)=> setQuestion(e.target.value)}
+                            type='text' placeholder="Start your question 'What', 'How', 'Why', etc."
                         fullWidth/>
                         <div style=
                         {{
@@ -103,7 +131,7 @@ function QuoraHeader() {
                     
                     <div className='modal__buttons'>
                         <button className='cancel' onClick={()=>setOpen(false)}>Cancel</button>
-                        <button type="submit" className='add'>Add Question</button>
+                        <button onClick={handleSubmit} type="submit" className='add'>Add Question</button>
                     </div>
 
                 </Modal>

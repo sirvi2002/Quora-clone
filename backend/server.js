@@ -6,6 +6,7 @@ const path = require('path');
 
 const PORT = 5000;
 
+app.use(cors());
 const db = require('./db.js');
 
 const router = require('./routes');
@@ -29,17 +30,16 @@ app.use('/api', router);
 
 
 app.use('/uploads', express.static(path.join(__dirname, "/../uploads")));
-app.use('/uploads', express.static(path.join(__dirname, "/../frontend/build")));
+// app.use(express.static(path.join(__dirname, "/../frontend/build")));
 
 app.get("*", (req, res) => {
     try{
-        res.sendFile(path.join(`${__dirname}/../frontend/build/index.html`));
+        // res.sendFile(path.join(`${__dirname}/../frontend/build/index.html`));
     } catch (e){
         res.send("Oops! unexpected error");
     }
 });
 
-app.use(cors());
 
 //server listening
 app.listen(process.env.PORT || PORT, () => {
