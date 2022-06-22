@@ -1,22 +1,36 @@
 import React from 'react'
 import QuoraHeader from './QuoraHeader'
-import Sidebar from './Sidebar'
-import Feed from './Feed'
-import Widget from './Widget'
 import './css/Quora.css'
+import QuestionDetails from './QuestionDetails'
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+import Home from './Home'
 
 function Quora() {
     return (
-        <div className='quora'>
-            <QuoraHeader />
-            <div className='quora__contents'>
-                <div className='quora__content'>
-                    <Sidebar />
-                    <Feed />
-                    <Widget/>
+        <Router>
+            <div className='quora'>
+                <QuoraHeader />
+                
+                <div className='quora__contents'>
+                    <div className='quora__content'>
+                    <Switch>
+                        <Route exact path="/">
+                            <Home/>
+                        </Route>
+                        <Route path="/questionDetails">
+                            <QuestionDetails />
+                        </Route>
+                    </Switch>
+                    </div>
                 </div>
             </div>
-        </div>
+        </Router>
     )   
 }
 

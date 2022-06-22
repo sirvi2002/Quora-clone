@@ -19,6 +19,7 @@
     padding: 0px 10px;
     width: 100%;
     max-width: 1200px;
+    justify-content:center;
   }
   
   .react-responsive-modal-modal {

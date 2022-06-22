@@ -3,19 +3,22 @@ const router = express.Router();
 
 const answerModel = require('../models/Answer');
 
+
 router.post("/", async (req, res) => {
-    // console.log(req.body);
+
     try {
-      await answerModel
-        .create({
-          answer: req.body.answer,
-          questionId: req.body.questionId,
-          user: req.body.user,
+        await answerModel.updateOne({
+            _id : req.body._id
+        }, {
+            $push: {
+                replies : req.body.replies
+            }
+            
         })
         .then(() => {
           res.status(201).send({
             status: true,
-            message: "Answer added successfully",
+            message: "Reply added successfully",
           });
         })
         .catch((e) => {
@@ -32,4 +35,17 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.get("/", async (req, res) => {
+    try 
+    {
+        const data = await answerModel.findById(req.query.id);
+        // console.log(data.replies);
+        res.json(data.replies);
+    }
+    catch (e)
+    {
+        res.status(500);
+    }
+    console.log(req.query.id);  
+});
 module.exports = router; 

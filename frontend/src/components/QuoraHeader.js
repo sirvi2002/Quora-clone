@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import HomeIcon from '@material-ui/icons/Home'
-import FeaturedPlayListOutlinedIcon from '@material-ui/icons/FeaturedPlayListOutlined'
-import AssignmentTurnedInOutIcon from '@material-ui/icons/AssignmentTurnedInOutlined'
 import {  ExpandMoreOutlined, NotificationsOutlined, PeopleAltOutlined, Search } from '@material-ui/icons'
 import { Avatar, Button, Input} from '@material-ui/core'
 import "./css/QuoraHeader.css";
@@ -50,9 +48,7 @@ function QuoraHeader() {
                 </div>
                 <div className='qHeader__icons'>
                         <div className='qHeader__icon'> <HomeIcon/> </div>
-                        <div className='qHeader__icon'> <FeaturedPlayListOutlinedIcon/> </div>
-                        <div className='qHeader__icon'> <AssignmentTurnedInOutIcon/> </div>
-                        <div className='qHeader__icon'> <PeopleAltOutlined/></div>
+                     
                         <div className='qHeader__icon'> <NotificationsOutlined /></div>
                         
                     </div>
@@ -72,6 +68,14 @@ function QuoraHeader() {
                     margin: "20px"
                 }}
                     onClick={onOpenModal}>Add Question</Button>
+                
+                <Button style={{backgroundColor: "#000", 
+                    color: "white",
+                    margin: "20px"
+                }}>Login / Sign Up</Button>
+
+                
+
 
                 <Modal
                     open={open}

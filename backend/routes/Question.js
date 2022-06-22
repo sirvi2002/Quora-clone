@@ -7,8 +7,8 @@ router.post('/', async (req, res) => {
     try {
         await questionModel.create(
             {
-                questionName: req.body.questionName, 
-                questionUrl: req.body.questionUrl 
+                questionName: req.body.questionName,
+                questionUrl: req.body.questionUrl
             }
         ).then(() => {
             res.status(201).send({
@@ -17,17 +17,18 @@ router.post('/', async (req, res) => {
             })
         }).catch((err) => {
             res.status(400).send({
-                status: false, 
+                status: false,
                 message:"Bad Request"
             })
         })
     } catch (e)
     {
         res.status(500).send({
-            status: false, 
+            status: false,
             message : "Internal Server Error"
         })
     }
+    console.log(req.body);
 });
 
 router.get("/", async (req, res) => {
