@@ -4,37 +4,32 @@ import './css/Quora.css'
 import QuestionDetails from './QuestionDetails'
 
 import {
-    BrowserRouter as Router,
-    Switch,
     Route,
-    Link
-  } from "react-router-dom";
+    BrowserRouter,
+    Routes
+} from "react-router-dom";
 import Home from './Home'
 import LoginReg from './Auth/LoginReg';
 
 function Quora() {
     return (
-        <Router>
+        <BrowserRouter>
             <div className='quora'>
                 <QuoraHeader />
-                
                 <div className='quora__contents'>
                     <div className='quora__content'>
-                    <Switch>
-                        <Route exact path="/">
-                            <Home/>
+                    <Routes>
+                        <Route path="/" element={<Home/>}>
                         </Route>
-                        <Route path="/questionDetails">
-                            <QuestionDetails />
+                        <Route path="/questionDetails" element={<QuestionDetails/>}>
                         </Route>
-                        <Route path='/loginReg' >
-                            <LoginReg/>    
+                        <Route path='/loginReg' element={<LoginReg/>}>    
                         </Route>
-                    </Switch>
+                    </Routes>
                     </div>
                 </div>
             </div>
-        </Router>
+        </BrowserRouter>
     )   
 }
 

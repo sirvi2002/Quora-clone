@@ -9,7 +9,7 @@ import 'react-quill/dist/quill.snow.css'
 import ReactTimeAgo from "react-time-ago";
 import axios from 'axios';
 import {
-    Link
+    useNavigate
   } from "react-router-dom";
 
 function LastSeen({ date }) {
@@ -21,8 +21,9 @@ function LastSeen({ date }) {
   }
 
 function Post({ post }) {
+
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-    
     const [answer, setAnswer] = useState("");
 
     const handleQuill = (value) => {
@@ -48,7 +49,7 @@ function Post({ post }) {
                 console.log(res.data);
                 alert("Answer added succesfully");
                 setOpen(false);
-                window.location.href = "/";
+                navigate('/');
             })
             .catch((e) => {
                 console.log(e);
@@ -56,14 +57,13 @@ function Post({ post }) {
         }
     }
 
-    
+    const handleClick = () => {
+        navigate('/questionDetails',{state:post})
+    };
 
     return (
-        <Link to={{
-            pathname: '/questionDetails',
-            state : post 
-        }} style={{ color: '#000', 'text-decoration': 'none' }} >
-        <div className='post'>
+    
+        <div className='post' onClick={handleClick}>
             <div className='post__info'>
                 <Avatar/>
                 <h4>User Name</h4>
@@ -132,7 +132,7 @@ function Post({ post }) {
                 {post?.allAnswers.length} Answer(s)
             </p>
             </div>
-        </Link>
+        
     )
 }
 

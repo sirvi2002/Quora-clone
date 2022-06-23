@@ -17,7 +17,7 @@ function Feed() {
     return (
         <div className='feed'>
             {
-                posts.map((post, index) => (<Post key={index} post = {post}/>))
+                posts.map((post, index) => (<Post key={index} post = {post} />))
             }
         </div>
     )

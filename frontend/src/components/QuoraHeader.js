@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import HomeIcon from '@material-ui/icons/Home'
 import {  ExpandMoreOutlined, NotificationsOutlined, PeopleAltOutlined, Search } from '@material-ui/icons'
-import { Avatar, Button, Input} from '@material-ui/core'
+import { Avatar, Button, Input} from '@mui/material'
 import "./css/QuoraHeader.css";
 import 'react-responsive-modal/styles.css'
 import Modal from 'react-responsive-modal'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 function QuoraHeader() {
+
+    const navigate = useNavigate();    
 
     const [open, setOpen] = useState(false);
 
@@ -32,7 +35,7 @@ function QuoraHeader() {
             {
                 console.log(res.data);
                 alert(res.data.message);
-                window.location.href = '/';
+                navigate('/');
             }).catch((e) => {
                 console.log("Error :- ", e);
             })
@@ -40,7 +43,7 @@ function QuoraHeader() {
     }
 
     const loginReg = () => {
-        window.location.href = '/loginReg';
+        navigate('/loginReg');
     };
 
     return (
