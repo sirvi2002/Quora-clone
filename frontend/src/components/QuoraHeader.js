@@ -39,6 +39,10 @@ function QuoraHeader() {
         }
     }
 
+    const loginReg = () => {
+        window.location.href = '/loginReg';
+    };
+
     return (
         <div className='qHeader'>
             <div className='qHeader-content'>
@@ -72,7 +76,7 @@ function QuoraHeader() {
                 <Button style={{backgroundColor: "#000", 
                     color: "white",
                     margin: "20px"
-                }}>Login / Sign Up</Button>
+                }} onClick={loginReg}>Login / Sign Up</Button>
 
                 
 

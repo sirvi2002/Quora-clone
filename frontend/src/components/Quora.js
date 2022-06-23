@@ -10,6 +10,7 @@ import {
     Link
   } from "react-router-dom";
 import Home from './Home'
+import LoginReg from './Auth/LoginReg';
 
 function Quora() {
     return (
@@ -25,6 +26,9 @@ function Quora() {
                         </Route>
                         <Route path="/questionDetails">
                             <QuestionDetails />
+                        </Route>
+                        <Route path='/loginReg' >
+                            <LoginReg/>    
                         </Route>
                     </Switch>
                     </div>
