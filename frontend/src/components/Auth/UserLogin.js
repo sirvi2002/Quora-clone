@@ -1,5 +1,6 @@
 import { Alert, Box, Button } from '@mui/material'
 import { TextField } from '@mui/material'
+import axios from 'axios';
 import React, { useState } from 'react'
 
 function UserLogin() {
@@ -10,7 +11,11 @@ function UserLogin() {
         type : ""
     });
 
-    const handleSubmit = (e) => {
+    const saveLoginToLocalStorage = (userName) => {
+        localStorage.setItem('userName', userName);
+    };
+
+    const handleSubmit =  async (e) => {
         e.preventDefault();
         
         const data = new FormData(e.currentTarget);
@@ -22,11 +27,38 @@ function UserLogin() {
 
         if (actualData.email && actualData.password)
         { 
-            console.log(actualData);
-            setError({
-                status: true, msg: "Login Success", type:
-                "success"
+            const config = {
+                headers: {
+                    "Content-Type":"application/json"
+                }
+            }
+            const body = {
+                email: actualData.email, 
+                password : actualData.password
+            }
+            await axios.post('http://localhost:5000/api/users/login', body, config).then((res) =>
+            {
+                if (res.data.status === false)
+                {
+                    setError({
+                        status: true, msg: res.data.message, type:
+                        "error"
+                    })
+                }
+                else
+                {
+                    setError({
+                        status: true, msg: res.data.message, type:
+                        "success"
+                    })
+                    saveLoginToLocalStorage(res.data.userName);
+                    window.location.reload(false);
+                }
+            }).catch((e) => {
+                console.log("Error :- ", e);
             })
+            
+            console.log(actualData);
             document.getElementById('login-form').reset();
         }
         else 

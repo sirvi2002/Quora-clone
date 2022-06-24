@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HomeIcon from '@material-ui/icons/Home'
 import {  ExpandMoreOutlined, NotificationsOutlined, PeopleAltOutlined, Search } from '@material-ui/icons'
 import { Avatar, Button, Input} from '@mui/material'
@@ -43,8 +43,29 @@ function QuoraHeader() {
     }
 
     const loginReg = () => {
+        console.log(user);
+        if (user !== null)
+        {
+            setUser("");
+            setBtnText("Login / Register");  
+            localStorage.clear();
+        }
+        else setBtnText("Logout");
         navigate('/loginReg');
     };
+
+    const [btnText,setBtnText] = useState();
+
+    const [user, setUser] = useState();
+    useEffect(() => {
+        const userName = localStorage.getItem('userName');
+        if (userName !== null) {
+            setUser(userName);
+            setBtnText('Logout');
+        }
+        else
+            setBtnText('Login / Register');
+    }, []);
 
     return (
         <div className='qHeader'>
@@ -79,10 +100,7 @@ function QuoraHeader() {
                 <Button style={{backgroundColor: "#000", 
                     color: "white",
                     margin: "20px"
-                }} onClick={loginReg}>Login / Sign Up</Button>
-
-                
-
+                }} onClick={loginReg}>{btnText}</Button>
 
                 <Modal
                     open={open}

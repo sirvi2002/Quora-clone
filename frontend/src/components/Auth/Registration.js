@@ -1,6 +1,7 @@
 import { Alert, Button, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
+import axios from 'axios'
 
 function Registration() {
 
@@ -10,7 +11,7 @@ function Registration() {
         type : ""
     });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         const data = new FormData(e.currentTarget);
@@ -31,7 +32,7 @@ function Registration() {
             return;
         }
 
-        if (actualData.password != actualData.confirm_password)
+        if (actualData.password !== actualData.confirm_password)
         {
             setError({
                 status: true, msg: "Password does not match", type:
@@ -40,9 +41,36 @@ function Registration() {
             return;
         }
         
-        setError({
-            status: true, msg: "Registration successful", type:
-            "success"
+       
+
+        const config = {
+            headers: {
+                "Content-Type":"application/json"
+            }
+        }
+        const body = {
+            username: actualData.username ,
+            email: actualData.email, 
+            password : actualData.password
+        }
+        await axios.post('http://localhost:5000/api/users/register', body, config).then((res) =>
+        {
+            if (res.data.status === false)
+            {
+                setError({
+                    status: true, msg: res.data.message, type:
+                    "error"
+                })
+            }
+            else
+            {
+                setError({
+                    status: true, msg: res.data.message, type:
+                    "success"
+                })
+            }
+        }).catch((e) => {
+            console.log("Error :- ", e);
         })
     };
 
