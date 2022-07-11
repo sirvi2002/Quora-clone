@@ -11,10 +11,18 @@ import { useNavigate } from 'react-router-dom';
 function QuoraHeader() {
 
     const navigate = useNavigate();    
-
+    const [user, setUser] = useState("");
     const [open, setOpen] = useState(false);
 
-    const onOpenModal = () => setOpen(true);
+    const onOpenModal = () => {
+        console.log(user);
+        if (!user)
+           {}
+        else 
+        {
+            setOpen(true);
+        }
+    };
     const [inputUrl , setInputUrl] = useState("")
     const [question, setQuestion] = useState("");
 
@@ -49,14 +57,19 @@ function QuoraHeader() {
             setUser("");
             setBtnText("Login / Register");  
             localStorage.clear();
+            navigate('/loginReg');
         }
-        else setBtnText("Logout");
-        navigate('/loginReg');
+        else
+        {
+            setBtnText("Logout");
+            navigate('/');
+        }
+            
     };
 
     const [btnText,setBtnText] = useState();
 
-    const [user, setUser] = useState();
+    
     useEffect(() => {
         const userName = localStorage.getItem('userName');
         if (userName !== null) {

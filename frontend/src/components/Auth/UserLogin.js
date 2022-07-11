@@ -2,8 +2,11 @@ import { Alert, Box, Button } from '@mui/material'
 import { TextField } from '@mui/material'
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function UserLogin() {
+
+    const navigate = useNavigate();
 
     const [error, setError] = useState({
         status: false, 
@@ -52,7 +55,8 @@ function UserLogin() {
                         "success"
                     })
                     saveLoginToLocalStorage(res.data.userName);
-                    window.location.reload(false);
+                    
+                    navigate('/');
                 }
             }).catch((e) => {
                 console.log("Error :- ", e);
