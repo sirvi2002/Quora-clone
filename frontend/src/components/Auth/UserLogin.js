@@ -75,9 +75,9 @@ function UserLogin() {
     };
 
     return (
-        <Box component='form' novalidate sx={{mt : 3}} id="login-form" onSubmit={handleSubmit}>
-            <TextField margin='normal'  fullWidth id='email' name='email' label='Email Address' />
-            <TextField margin='normal'  fullWidth id='password' name='password' label='Password' type='password'/>
+        <Box component='form' sx={{width : 450 , mt : 3}} novalidate  id="login-form" onSubmit={handleSubmit}>
+            <TextField margin='normal'  sx={{width : 400}} id='email' name='email' label='Email Address' />
+            <TextField margin='normal'  sx={{width : 400}} id='password' name='password' label='Password' type='password'/>
         
             <Box textAlign='center'>
                 <Button type='submit' variant='contained' sx={{mt:2}}>

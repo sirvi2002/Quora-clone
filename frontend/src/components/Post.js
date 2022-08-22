@@ -1,4 +1,4 @@
-import { Avatar } from '@material-ui/core'
+import { Avatar, IconButton } from '@material-ui/core'
 import { ArrowDownwardOutlined, ArrowUpwardOutlined } from '@material-ui/icons'
 import React, { useState } from 'react'
 import './css/Post.css'
@@ -8,10 +8,15 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import ReactTimeAgo from "react-time-ago";
 import axios from 'axios';
+import { Provider, UpdownButton } from "@lyket/react";
+import Stack from '@mui/material/Stack';
 import {
     useNavigate
   } from "react-router-dom";
-
+import { MdThumbDown, MdThumbUp } from 'react-icons/md';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import Tooltip from '@mui/material/Tooltip';
 function LastSeen({ date }) {
     return (
       <div>
@@ -57,25 +62,28 @@ function Post({ post }) {
         }
     }
 
-    const handleClick = () => {
-        navigate('/questionDetails',{state:post})
-    };
+    
 
     return (
     
-        <div className='post' onClick={handleClick}>
+        <div className='post'>
             <div className='post__info'>
-                <Avatar/>
-                <h4>User Name</h4>
-                <small>
-                    <LastSeen date={post?.createdAt}/>
-                </small>
+                <Stack direction="row" spacing={35} mb={3}>
+                    <Stack direction="row" spacing={2}>
+                        <Avatar/>
+                        <Stack direction="column" spacing={-1}>
+                            <h6>User Name</h6>
+                            <small>
+                            <LastSeen date={post?.createdAt}/>
+                            </small>
+                        </Stack>
+                    </Stack>
+                </Stack>
             </div>
             <div className='post__body'>
                 <div className='post__question'>
-
-                    <p>{post?.questionName}</p>
-                    <button onClick={()=>setOpen(true)} className='post__btnAnswer'>Answer</button>
+                        <p>{post?.questionName}</p>
+                        <button onClick={()=>setOpen(true)} className='post__btnAnswer'>Answer</button>
                 </div>
             </div>
 
@@ -117,8 +125,13 @@ function Post({ post }) {
             }
 
             <div className='post__footer'>
-                <ArrowUpwardOutlined />
-                <ArrowDownwardOutlined/>
+                
+
+            <div className='post__footer'>
+                <MdThumbUp className='like'/>
+                <MdThumbDown  className='dislike'/>
+            </div>
+            
             </div>
         
             <p

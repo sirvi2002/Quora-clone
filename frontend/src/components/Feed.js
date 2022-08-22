@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './css/Feed.css'
-import Post from './Post'
+import FeedPost from './FeedPost'
 import axios from 'axios'
 
 
@@ -17,7 +17,7 @@ function Feed() {
     return (
         <div className='feed'>
             {
-                posts.map((post, index) => (<Post key={index} post = {post} />))
+                posts.map((post, index) => (<FeedPost key={index} post = {post} />))
             }
         </div>
     )

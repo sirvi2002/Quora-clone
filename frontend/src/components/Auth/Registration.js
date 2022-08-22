@@ -75,11 +75,11 @@ function Registration() {
     };
 
     return (
-        <Box component='form' novalidate sx={{mt : 3}} id="register-form" onSubmit={handleSubmit}>
-            <TextField margin='normal' fullWidth id='username' name='username' label='Name'/>
-            <TextField margin='normal' fullWidth id='email' name='email' label='Email Address' />
-            <TextField margin='normal' fullWidth id='password' name='password' label='Password' type='password'/>
-            <TextField margin='normal' fullWidth id='confirm_password' name='confirm_password' label='Confirm Password' type='password'/>
+        <Box component='form'sx={{width : 450 , mt:3}} novalidate id="register-form" onSubmit={handleSubmit}>
+            <TextField sx={{width : 400}} margin='normal' fullWidth id='username' name='username' label='Name'/>
+            <TextField margin='normal' sx={{width : 400}} id='email' name='email' label='Email Address' />
+            <TextField margin='normal' sx={{width : 400}} id='password' name='password' label='Password' type='password'/>
+            <TextField margin='normal' sx={{width : 400}} id='confirm_password' name='confirm_password' label='Confirm Password' type='password'/>
             
             <Box textAlign='center'>
                 <Button type='submit' variant='contained'>

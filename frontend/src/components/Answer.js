@@ -5,6 +5,7 @@ import ReactTimeAgo from "react-time-ago";
 import './css/Answer.css'
 import axios from 'axios';
 import Reply from './Reply'
+import { Stack } from '@mui/material';
 
 function LastSeen({ date }) {
     return (
@@ -76,10 +77,14 @@ function Answer({ _a }) {
                 <div className="post-answered">
                     <Avatar src={_a?.user?.photo} />
                     <div className="post-info">
-                        <p>{_a?.user?.userName}</p>
-                        <span>
-                            <LastSeen date={_a?.createdAt} />
-                        </span>
+                        <Stack direction="column" ml={1} spacing={-1.5}>
+                            <p>UserName</p>
+                            <span>
+                                <LastSeen date={_a?.createdAt} />
+                            </span>
+                        </Stack>
+                        {/* <p>{_a?.user?.userName}</p> */}
+                        
                     </div>
                 </div>
                 <div className="post-answer">{ReactHtmlParser(_a?.answer)}</div>

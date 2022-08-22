@@ -7,20 +7,21 @@ import 'react-responsive-modal/styles.css'
 import Modal from 'react-responsive-modal'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-
+import { useAlert } from 'react-alert'
 function QuoraHeader() {
-
+    const alert = useAlert()
     const navigate = useNavigate();    
-    const [user, setUser] = useState("");
+    const [user, setUser] = useState(null);
     const [open, setOpen] = useState(false);
 
     const onOpenModal = () => {
-        console.log(user);
-        if (!user)
-           {}
+        console.log("User : " + user);
+        if (user!== null)
+            setOpen(true);
         else 
         {
-            setOpen(true);
+            console.log("Here");
+            alert.show('You need to login ')
         }
     };
     const [inputUrl , setInputUrl] = useState("")
@@ -51,26 +52,30 @@ function QuoraHeader() {
     }
 
     const loginReg = () => {
-        console.log(user);
-        if (user !== null)
+        if (user!=null)
         {
-            setUser("");
+            setUser(null);
             setBtnText("Login / Register");  
             localStorage.clear();
             navigate('/loginReg');
         }
         else
         {
+            navigate('/loginReg');
             setBtnText("Logout");
-            navigate('/');
         }
-            
     };
+
+
+    const navigateHome = () => {
+        navigate('/');
+    }
 
     const [btnText,setBtnText] = useState();
 
     
     useEffect(() => {
+
         const userName = localStorage.getItem('userName');
         if (userName !== null) {
             setUser(userName);
@@ -78,7 +83,7 @@ function QuoraHeader() {
         }
         else
             setBtnText('Login / Register');
-    }, []);
+    });
 
     return (
         <div className='qHeader'>
@@ -88,10 +93,8 @@ function QuoraHeader() {
 
                 </div>
                 <div className='qHeader__icons'>
-                        <div className='qHeader__icon'> <HomeIcon/> </div>
-                     
-                        <div className='qHeader__icon'> <NotificationsOutlined /></div>
-                        
+                        <div className='qHeader__icon' onClick={navigateHome}> <HomeIcon></HomeIcon> </div>
+
                     </div>
 
                     <div className='qHeader__input'>
